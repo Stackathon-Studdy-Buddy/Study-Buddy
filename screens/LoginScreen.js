@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View,Button,TextInput,ImageBackground ,Image} from 'react-native';
 import * as Font from 'expo-font'
-
+import db from '../server/firebase'
 export default class LoginScreen extends React.Component{
 
 constructor(props){
@@ -11,14 +11,14 @@ constructor(props){
     password:''
   }
 }
-  async componentDidMount() {
-    await Font.loadAsync({
-      'bangers': require('../assets/fonts/Bangers-Regular.ttf'),
-    });
-  }
+
+ async componentDidMount() {
+await Font.loadAsync({
+  'bangers': require('../assets/fonts/Bangers-Regular.ttf')
+})
+}
 
   render(){
-
     return(
       <ImageBackground source={require('../c.jpg')} style={styles.container} >
 <View style={styles.inner}>
@@ -59,7 +59,7 @@ constructor(props){
               // }else {
               //   this.setState(() => ({ nameError: null }));
               // }
-              if(email==='1'&&password==='liana')
+              if(email==='1'&&password==='1')
               {
                 return this.props.navigation.navigate('Home')
               }else{
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
   left:"35%",
   },
   title:{
-    fontFamily:"bangers",
+    // fontFamily:"bangers",
     fontSize:35,
     position:"absolute",
     top: "-150%",
