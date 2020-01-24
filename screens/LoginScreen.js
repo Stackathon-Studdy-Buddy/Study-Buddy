@@ -11,11 +11,13 @@ constructor(props){
     password:''
   }
 }
+
  async componentDidMount() {
 await Font.loadAsync({
   'bangers': require('../assets/fonts/Bangers-Regular.ttf')
 })
 }
+
   render(){
     return(
       <ImageBackground source={require('../c.jpg')} style={styles.container} >
@@ -72,7 +74,9 @@ await Font.loadAsync({
          </View>
          <View style={styles.footer}>
         <Text>Not a member yet?</Text>
-        <Button title="Sign up"/>
+        <Button title="Sign up"
+        onPress={() => {return this.props.navigation.navigate('Signup')}}
+        />
           </View>
         </ImageBackground>
     )
