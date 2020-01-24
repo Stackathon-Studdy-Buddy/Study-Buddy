@@ -4,6 +4,7 @@ import {createAppContainer,createSwitchNavigator,} from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack';
 import {createDrawerNavigator,DrawerItems} from 'react-navigation-drawer'
 import LoginScreen from './screens/LoginScreen'
+import Signup from './screens/Signup'
 import HomeScreen from './screens/HomeScreen'
 import Settings from './screens/Settings'
 import Profile from './screens/Profile'
@@ -97,6 +98,9 @@ Settings:{
 const AllNavigators=createSwitchNavigator({
   Welcome:{
     screen: LoginScreen
+  },
+  Signup: {
+    screen: Signup
   },
   Home:{
     screen:AppDrawerNavigator
