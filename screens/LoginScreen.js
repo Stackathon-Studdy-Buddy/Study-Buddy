@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    color: 'white'
   },
   inner:{
   position:"absolute",

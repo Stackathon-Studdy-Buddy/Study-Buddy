@@ -12,6 +12,10 @@ import {createBottomTabNavigator} from 'react-navigation-tabs'
 import Add from './screens/AddMeeting'
 import Icon from '@expo/vector-icons/Ionicons'
 import SplashScreen from 'react-native-splash-screen'
+import {Provider} from 'react-redux'
+import store from './store/index'
+
+
 const DashBoardTabNavigator=createBottomTabNavigator({
  Home:{
    screen:HomeScreen,
@@ -114,7 +118,9 @@ const MainApp=createAppContainer(AllNavigators);
 
  const App=()=>{
 return(
+  <Provider store={store} >
        <MainApp/>
+       </Provider>
   )
  }
  export default App;
