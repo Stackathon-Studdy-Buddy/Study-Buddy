@@ -11,12 +11,16 @@ constructor(props){
     password:''
   }
 }
- async componentDidMount() {
-await Font.loadAsync({
+ componentDidMount() {
+  // await Font.loadAsync({
+  //   'bangers': require('../assets/fonts/Bangers-Regular.ttf'),
+  // });
+Font.loadAsync({
   'bangers': require('../assets/fonts/Bangers-Regular.ttf')
 })
 }
   render(){
+
     return(
       <ImageBackground source={require('../c.jpg')} style={styles.container} >
 <View style={styles.inner}>
@@ -123,10 +127,11 @@ const styles = StyleSheet.create({
   left:"35%",
   },
   title:{
-    // fontFamily:"bangers",
+    fontFamily:"bangers",
     fontSize:35,
     position:"absolute",
     top: "-150%",
     left:"18%",
+
   }
 });

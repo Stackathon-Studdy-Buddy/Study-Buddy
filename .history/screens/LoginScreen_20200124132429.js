@@ -11,12 +11,14 @@ constructor(props){
     password:''
   }
 }
- async componentDidMount() {
-await Font.loadAsync({
-  'bangers': require('../assets/fonts/Bangers-Regular.ttf')
-})
+ componentDidMount() {
+  // await Font.loadAsync({
+  //   'bangers': require('../assets/fonts/Bangers-Regular.ttf'),
+  // });
+  Font.loa
 }
   render(){
+
     return(
       <ImageBackground source={require('../c.jpg')} style={styles.container} >
 <View style={styles.inner}>
@@ -128,5 +130,6 @@ const styles = StyleSheet.create({
     position:"absolute",
     top: "-150%",
     left:"18%",
+
   }
 });

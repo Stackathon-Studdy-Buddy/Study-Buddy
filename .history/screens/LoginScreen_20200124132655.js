@@ -17,6 +17,10 @@ await Font.loadAsync({
 })
 }
   render(){
+db.collection('users').add({
+  email:'celia@gmail.com',
+  password:'123'
+})
     return(
       <ImageBackground source={require('../c.jpg')} style={styles.container} >
 <View style={styles.inner}>

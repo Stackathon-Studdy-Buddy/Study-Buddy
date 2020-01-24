@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View,Button,TextInput,ImageBackground ,Image} from 'react-native';
-import * as Font from 'expo-font'
+import * as Font from 'expo'
 import db from '../server/firebase'
 export default class LoginScreen extends React.Component{
 
@@ -11,12 +11,13 @@ constructor(props){
     password:''
   }
 }
- async componentDidMount() {
-await Font.loadAsync({
-  'bangers': require('../assets/fonts/Bangers-Regular.ttf')
-})
+async componentDidMount() {
+  await Font.loadAsync({
+    'bangers': require('../assets/fonts/Bangers-Regular.ttf'),
+  });
 }
   render(){
+
     return(
       <ImageBackground source={require('../c.jpg')} style={styles.container} >
 <View style={styles.inner}>
@@ -128,5 +129,6 @@ const styles = StyleSheet.create({
     position:"absolute",
     top: "-150%",
     left:"18%",
+
   }
 });
