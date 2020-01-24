@@ -10,6 +10,7 @@
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.6",
     "expo": "^36.0.2",
+    "expo-font": "^8.0.0",
     "firebase": "^7.7.0",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",
@@ -30,11 +31,6 @@
   "devDependencies": {
     "babel-preset-expo": "~8.0.0",
     "@babel/core": "^7.0.0"
-  },
-  "rnpm": {
-    "assets": [
-      "./assets/fonts"
-    ]
   },
   "private": true
 }
