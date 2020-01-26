@@ -1,17 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import { StyleSheet, Text, View,Button,TextInput,ImageBackground ,Image} from 'react-native';
-import * as Font from 'expo-font'
-import {signup} from '../store/user'
+import {updateProfile} from '../store/user'
 
-class SignupScreen extends React.Component{
-
+export default class UpdateUserProfileScreen extends React.Component{
   constructor(props){
     super(props)
     this.state={
       firstName:'',
       lastName:'',
-      email: '',
+      email: this.props.user.email,
       password: ''
     }
   }
@@ -22,19 +20,13 @@ class SignupScreen extends React.Component{
   onChangeText2(value){
     this.setState({lastName: value})
   }
-  onChangeText3(value){
-    this.setState({email: value})
-  }
   onChangeText4(value){
     this.setState({password: value})
   }
 
-
-
   render(){
-
-    return(
-
+    console.log("UPDATE PROPS", this.props)
+    return (
       <View style={styles.container}>
 
           <View style={styles.inner} >
@@ -51,13 +43,6 @@ class SignupScreen extends React.Component{
             onSubmitEditing={this.onSubmit}
             placeholderTextColor="white"/>
 
-            <TextInput placeholder='email' value={this.state.email}
-            style={styles.input}
-            autoCapitalize= 'none'
-            onChangeText={(value) => this.onChangeText3(value)}
-            onSubmitEditing={this.onSubmit}
-            placeholderTextColor="white"/>
-
             <TextInput placeholder='password' value={this.state.password}
             style={styles.input}
             onChangeText={(value) => this.onChangeText4(value)}
@@ -65,30 +50,31 @@ class SignupScreen extends React.Component{
             placeholderTextColor="white"/>
 
             <Button title="Submit!"
-            onPress={async () =>
-              await this.props.onSignup({
+            onPress={() =>
+              this.props.onUpdateProfile({
                 firstName: this.state.firstName,
                 lastName: this.state.lastName,
                 email: this.state.email,
                 password: this.state.password
                 })
               }
-            onPress = {() => this.props.navigation.navigate('Home')}
             style={styles.btn}
             color="white"/>
 
           </View>
 
-          <View style={styles.back}>
+          {/* <View style={styles.back}>
             <Button title="Back to Login"
-            onPress={() => this.props.navigation.navigate('Welcome')}
+            onPress={() => this.props.navigation.navigate('Profile')}
             />
-          </View>
+          </View> */}
 
         </View>
     )
   }
+
 }
+
 
 const styles = StyleSheet.create({
   back: {
@@ -99,13 +85,13 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-    flex: 1,
+    // flex: 1,
     flexDirection: 'column',
   },
   inner:{
     position:"absolute",
     top: "35%",
-    left:"11.6%",
+    left:"-25%",
     backgroundColor: "#282c34",
     padding: 15,
     paddingTop:18,
@@ -120,8 +106,8 @@ const styles = StyleSheet.create({
       // justifyContent:"center",
     },
     input:{
-      width:300,
-      height:66,
+      width:200,
+      height:44,
       padding:12,
       borderWidth:1,
       borderColor:"white",
@@ -137,15 +123,7 @@ const styles = StyleSheet.create({
     },
 })
 
-const mapDispatchToProps = function(dispatch) {
-  return {
-    onSignup: function(user){
-      const thunk = signup(user)
-      dispatch(thunk)
-    }
-  }
-}
 
-const Signup = connect(null, mapDispatchToProps)(SignupScreen)
+// const UpdateUserProfile = connect(null, mapDispatchToProps)(UserProfileScreen)
 
-export default Signup
+// export default UpdateUserProfile

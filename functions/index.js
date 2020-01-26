@@ -71,7 +71,7 @@ app.get('/meetings/:meetingId', async(req, res) => {
 app.get('/users/:userId', async(req, res) => {
   (async () => {
     try {
-        const document = firestore.collection('users').doc(req.params.userId);
+        const document = await firestore.collection('users').doc(req.params.userId);
         let user = await document.get();
         let response = user.data();
         return res.status(200).send(response);
@@ -92,20 +92,18 @@ app.put('/users/update/:userId',async(req,res)=>{
     return res.status(500).send(err)}
   })();
 })
+
 app.post('/users/create', (req, res) => {
-  const {id,email,firstName,lastName,password}=req.body;
-  db.collection("cities").doc("LA").set({
-    email: "Los Angeles",
-    firstName: firestore,
-    lastName: lastName
-})
-.then(function() {
-    console.log("Document successfully written!");
-})
-.catch(function(error) {
-    console.error("Error writing document: ", error);
-});
-});
+  // const {id,email,firstName,lastName,password}=req.body;
+  (async () => {
+      try {
+      await firestore.collection('users').doc(req.body.email).set(req.body)
+        return res.status(200).send();
+      } catch (error) {
+        console.log(error);
+        return res.status(500).send(error);
+      }
+    })();
 
 
 exports.api=functions.https.onRequest(app);
