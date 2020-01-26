@@ -3,13 +3,14 @@ import { StyleSheet, Text, View ,Button} from 'react-native';
 import {connect} from 'react-redux'
 import {getSingleMeeting} from '../store/meetings'
 import MapView,{Marker,Callout} from 'react-native-maps'
+import * as Font from 'expo-font'
 class SigleMeeting extends React.Component{
 
 constructor(props){
   super(props)
 
     this.state = {
-      adress: this.props.navigation.state.params.address,
+      address: this.props.navigation.state.params.address,
       time: this.props.navigation.state.params.time,
       description: this.props.navigation.state.params.description,
       date: this.props.navigation.state.params.date,
@@ -17,6 +18,13 @@ constructor(props){
       name: this.props.navigation.state.params.name
   }
 }
+
+async componentDidMount() {
+  await Font.loadAsync({
+    'bangers': require('../assets/fonts/Bangers-Regular.ttf')
+  })
+  }
+
   render(){
 console.log('here',this.state)
 const region= {
@@ -42,10 +50,24 @@ const region= {
          />
       </MapView>
 
+    <Text style={{fontSize:20,fontStyle:"italic",fontFamily:"bangers"}}>{this.state.name}</Text>
+      <View style={styles.info}>
+        <Text style={styles.items}>Date:</Text>
+        <Text style={{marginTop:5,marginBottom:5, marginLeft:20}}>{this.state.date}</Text>
+        <Text style={styles.items}>Time:</Text>
+        <Text style={{marginTop:5,marginBottom:5, marginLeft:20}}>{this.state.time}</Text>
+        <Text style={styles.items}>Address:</Text>
+        <Text style={{marginTop:5,marginBottom:5, marginLeft:20}}>{this.state.address}</Text>
+        <Text style={styles.items}>Description:</Text>
+        <Text style={{marginTop:5,marginBottom:5, marginLeft:20}}>{this.state.description}</Text>
+      </View>
 
 
 
-            <Button title="Back" color='black'
+
+
+
+            <Button title="Back" color='black' style={styles.btn}
         onPress={() => {return this.props.navigation.navigate('Home')}}
         />
         </View>
@@ -57,11 +79,28 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'space-around',
-  }, map: {
+    justifyContent: 'space-evenly',
 
-   width:"60%",
-   height:"30%"
+  }, map: {
+    borderRadius:20,
+   width:"70%",
+   height:"30%",
+
+  },
+  info:{
+
+margin:25
+  },
+  items:{
+    fontSize:20,
+    fontStyle:"italic",
+  fontFamily:"bangers",
+    margin:10
+  }
+  ,
+  btn:{
+    position:"absolute",
+    bottom:"100%"
   }
 });
 const mapStateToProps=(state)=>({

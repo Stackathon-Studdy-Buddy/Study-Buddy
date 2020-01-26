@@ -55,8 +55,6 @@ this.onClick=this.onClick.bind(this)
   }).catch((error) => {
     console.log('Error fetching address: ' + error);
   });
-console.log('here',this.state.address)
-
   }
   render(){
 const meetings=this.props.meetings;
@@ -65,9 +63,6 @@ if(meetings.length===0) return <View style={styles.container}><Text>Loading...</
 
     return(
         <View style={styles.container}>
-         <View>
-           <Text>Here</Text>
-         </View>
         <MapView
         style={styles.map}
         region={this.state.region}
@@ -91,7 +86,7 @@ if(meetings.length===0) return <View style={styles.container}><Text>Loading...</
            `
            const meetingSingleview={
              date:date,
-             time:d,
+             time:`${hour}:${minute}`,
              description:description,
              address:this.state.address,
              location:location,
@@ -134,17 +129,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
   },
   map: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    margin:15,
-   width:"92%",
-   height:"60%"
+    width:"100%",
+    height:"100%",
   },
   title:{
     fontSize:15,
