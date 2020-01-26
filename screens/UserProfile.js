@@ -6,13 +6,12 @@ import UpdateUserProfileScreen from './UpdateProfileForm'
 
 class UserProfileScreen extends React.Component{
 
-  componentDidMount(){
-    this.props.onLoadUser()
-  }
+  // componentDidMount(){
+  //   this.props.onLoadUser()
+  // }
 
   render(){
-    console.log("PROFILE", this.props.user)
-    console.log("STATE", this.state)
+    console.log("USERPROFFFFF", this.props)
     return(
       <View style={styles.container}>
         <Text>PROFILE:</Text>

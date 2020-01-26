@@ -1,8 +1,11 @@
 import React from 'react';
+import {connect} from 'react-redux'
 import { StyleSheet, Text, View,Button,TextInput,ImageBackground ,Image} from 'react-native';
 import * as Font from 'expo-font'
 import db from '../server/firebase'
-export default class LoginScreen extends React.Component{
+import {login} from '../store/user'
+
+class LoginScreen extends React.Component{
 
 constructor(props){
   super(props)
@@ -29,6 +32,7 @@ await Font.loadAsync({
            <TextInput
            value={this.state.email}
            onChangeText={(email)=>this.setState({email})}
+           autoCapitalize= 'none'
            placeholder={'Email'}
            style={styles.input}
            placeholderTextColor="white"
@@ -50,9 +54,20 @@ await Font.loadAsync({
           title="Login"
           style={styles.btn}
           onPress={
-            ()=>{
+            async ()=>{
               const email=this.state.email.toLocaleLowerCase()
               const password=this.state.password
+
+              await this.props.onLogin(email, password)
+              if(this.props.email === email){
+                return this.props.navigation.navigate('Home')
+              }
+              else{
+                  this.setState(() => ({ nameError: null }));
+                  this.setState(() => ({ nameError: "Wrong email or password!" }));
+                }
+
+
               // if (email.trim() === "") {
               //   this.setState(() => ({ nameError: "Email required " }));
               // } else if(password.trim()===""){
@@ -60,13 +75,13 @@ await Font.loadAsync({
               // }else {
               //   this.setState(() => ({ nameError: null }));
               // }
-              if(email==='1'&&password==='1')
-              {
-                return this.props.navigation.navigate('Home')
-              }else{
-                this.setState(() => ({ nameError: null }));
-                this.setState(() => ({ nameError: "Wrong email or password!" }));
-              }
+              // if(email==='1'&&password==='1')
+              // {
+              //   return this.props.navigation.navigate('Home')
+              // }else{
+              //   this.setState(() => ({ nameError: null }));
+              //   this.setState(() => ({ nameError: "Wrong email or password!" }));
+              // }
             }
           }
           color="white"
@@ -136,3 +151,16 @@ const styles = StyleSheet.create({
     left:"18%",
   }
 });
+
+const mapDispatchToProps = function(dispatch) {
+  return {
+    onLogin: function(email, password){
+      const thunk = login(email, password)
+      dispatch(thunk)
+    }
+  }
+}
+
+const Login = connect(null, mapDispatchToProps)(LoginScreen)
+
+export default Login

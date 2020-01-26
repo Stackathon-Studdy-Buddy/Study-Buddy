@@ -3,7 +3,7 @@ import { StyleSheet, Text, View,SafeAreaView,Button, Alert,AsyncStorage } from '
 import {createAppContainer,createSwitchNavigator,} from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack';
 import {createDrawerNavigator,DrawerItems} from 'react-navigation-drawer'
-import LoginScreen from './screens/LoginScreen'
+import Login from './screens/LoginScreen'
 import Signup from './screens/Signup'
 import HomeScreen from './screens/HomeScreen'
 import Settings from './screens/Settings'
@@ -103,7 +103,7 @@ Settings:{
 )
 const AllNavigators=createSwitchNavigator({
   Welcome:{
-    screen: LoginScreen
+    screen: Login
   },
   Signup: {
     screen: Signup
