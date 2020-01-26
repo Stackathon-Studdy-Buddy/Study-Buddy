@@ -5,10 +5,10 @@ const GET_USER = 'GET_USER'
 
 //INITIAL STATE:
 const defaultUser = {
-  firstName: 'John',
-  lastName: 'Doe',
-  email: 'john@email.com',
-  password: '123'
+  // firstName: 'John',
+  // lastName: 'Doe',
+  // email: 'john@email.com',
+  // password: '123'
 }
 
 //ACTION CREATORS:
@@ -26,10 +26,14 @@ let dummy = {
 //THUNK CREATORS
 export const signup = user => async dispatch => {
   try{
-    let res = await axios.post('https://us-central1-stackathon-2c6f1.cloudfunctions.net/api/users/create', user)
+    const res1 = await axios.get(`https://us-central1-stackathon-2c6f1.cloudfunctions.net/api/users/${user.email}`)
 
-    console.log(user)
-    dispatch(getUser(user))
+    if(!res1.data.firstName){
+      let res = await axios.post('https://us-central1-stackathon-2c6f1.cloudfunctions.net/api/users/create', user)
+
+      console.log(user)
+      dispatch(getUser(user))
+    }
 
   }catch(error){
     console.error(error)
@@ -41,9 +45,9 @@ export const login = (email, password) => async dispatch => {
     const res = await axios.get(`https://us-central1-stackathon-2c6f1.cloudfunctions.net/api/users/${email}`)
     console.log("LOGINNNNNNN", res.data)
 
-    if(res.data.password === password){
-      dispatch(getUser(res.data || defaultUser))
-    }
+
+    dispatch(getUser(res.data || defaultUser))
+
   }catch{
     console.error(error)
   }
@@ -51,9 +55,9 @@ export const login = (email, password) => async dispatch => {
 
 export const updateProfile = user => async dispatch => {
   try{
-    console.log(user.email)
     let res = await axios.put(`https://us-central1-stackathon-2c6f1.cloudfunctions.net/api/users/update/${user.email}`, user)
     dispatch(getUser(user))
+
   }catch(error){
     console.error(error)
   }

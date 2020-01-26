@@ -59,7 +59,10 @@ await Font.loadAsync({
               const password=this.state.password
 
               await this.props.onLogin(email, password)
-              if(this.props.email === email){
+
+              console.log("AFTER LGIN", this.props)
+
+              if(this.props.user.email === email){
                 return this.props.navigation.navigate('Home')
               }
               else{
@@ -152,6 +155,11 @@ const styles = StyleSheet.create({
   }
 });
 
+const mapStateToProps = function(state) {
+  return {
+    user: state.user
+  }
+}
 const mapDispatchToProps = function(dispatch) {
   return {
     onLogin: function(email, password){
@@ -161,6 +169,6 @@ const mapDispatchToProps = function(dispatch) {
   }
 }
 
-const Login = connect(null, mapDispatchToProps)(LoginScreen)
+const Login = connect(mapStateToProps, mapDispatchToProps)(LoginScreen)
 
 export default Login
