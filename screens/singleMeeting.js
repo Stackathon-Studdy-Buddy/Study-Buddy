@@ -15,7 +15,8 @@ constructor(props){
       description: this.props.navigation.state.params.description,
       date: this.props.navigation.state.params.date,
       location: this.props.navigation.state.params.location,
-      name: this.props.navigation.state.params.name
+      name: this.props.navigation.state.params.name,
+      user: this.props.navigation.state.params.user
   }
 }
 
@@ -52,6 +53,8 @@ const region= {
 
     <Text style={{fontSize:20,fontStyle:"italic",fontFamily:"bangers"}}>{this.state.name}</Text>
       <View style={styles.info}>
+      <Text style={styles.items}>User:</Text>
+        <Text style={{marginTop:5,marginBottom:5, marginLeft:20}}>{this.state.user}</Text>
         <Text style={styles.items}>Date:</Text>
         <Text style={{marginTop:5,marginBottom:5, marginLeft:20}}>{this.state.date}</Text>
         <Text style={styles.items}>Time:</Text>

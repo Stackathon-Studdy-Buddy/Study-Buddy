@@ -3,7 +3,7 @@ import { StyleSheet, Text, View,TouchableHighlight } from 'react-native';
 import {connect} from 'react-redux'
 import {gotMeetings,getSingleMeeting} from '../store/meetings'
 import MapView,{Marker,Callout} from 'react-native-maps'
-
+import SwipeablePanel from 'rn-swipeable-panel';
 import Geocode from 'react-geocode'
 require('../secrets')
 
@@ -33,7 +33,9 @@ constructor(props){
         longitude:  -73.994587,
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
-      }
+      },
+      swipeablePanelActive: false,
+      mapView:true
   }
 
 this.onRegionChange=this.onRegionChange.bind(this)
@@ -41,12 +43,23 @@ this.onClick=this.onClick.bind(this)
 }
   async componentDidMount(){
    await  this.props.getMeetings();
+   this.openPanel();
   }
 
+closeMapView=()=>{
+  this.setState({mapView:false})
+}
+openPanel = () => {
+    this.setState({ swipeablePanelActive: true });
+};
 
+closePanel = () => {
+    this.setState({ swipeablePanelActive: false });
+};
   onRegionChange(region){
     this.setState({ region });
   }
+
  async onClick(lat,lng) {
  await  getAdress(lat,lng).then((data) => {
     this.setState({
@@ -120,6 +133,16 @@ if(meetings.length===0) return <View style={styles.container}><Text>Loading...</
 
 
         </MapView>
+        <SwipeablePanel
+                    fullWidth
+                    isActive={this.state.swipeablePanelActive}
+                    onClose={this.closePanel}
+                    onPressCloseButton={this.closePanel}
+                    closeOnTouchOutside={true}
+                    showCloseButton={true}
+                >
+
+				</SwipeablePanel>
 
         </View>
     )
