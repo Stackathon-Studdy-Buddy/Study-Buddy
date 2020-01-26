@@ -37,7 +37,9 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "rn-swipeable-panel": "^1.0.19"
+    "rn-swipe-button": "^1.2.4",
+    "rn-swipeable-panel": "^1.0.19",
+    "toggle-switch-react-native": "^2.1.0"
   },
   "devDependencies": {
     "babel-preset-expo": "~8.0.0",

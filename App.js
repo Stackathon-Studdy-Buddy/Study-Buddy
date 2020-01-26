@@ -45,9 +45,11 @@ const DashBoardTabNavigator=createBottomTabNavigator({
   navigationOptions:(({navigation})=>{
     const {routeName}=navigation.state.routes[navigation.state.index];
     return{
-      headerTitle:routeName
+      headerTitle:routeName,
+
     }
-  })
+  }),
+
 })
 const DashBoardStackNavigator=createStackNavigator({
   Connections:DashBoardTabNavigator

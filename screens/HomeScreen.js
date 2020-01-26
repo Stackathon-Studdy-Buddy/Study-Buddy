@@ -1,10 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View,TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View,TouchableHighlight,Switch, Button } from 'react-native';
 import {connect} from 'react-redux'
 import {gotMeetings,getSingleMeeting} from '../store/meetings'
 import MapView,{Marker,Callout} from 'react-native-maps'
 import SwipeablePanel from 'rn-swipeable-panel';
 import Geocode from 'react-geocode'
+import ToggleSwitch from 'toggle-switch-react-native'
+import Icon from '@expo/vector-icons/Ionicons'
 require('../secrets')
 
 Geocode.setApiKey(`${process.env.REACT_APP_GOOGLE_KEY}`);
@@ -35,7 +37,8 @@ constructor(props){
         longitudeDelta: 0.0421,
       },
       swipeablePanelActive: false,
-      mapView:true
+      mapView:true,
+      listView:false
   }
 
 this.onRegionChange=this.onRegionChange.bind(this)
@@ -47,7 +50,10 @@ this.onClick=this.onClick.bind(this)
   }
 
 closeMapView=()=>{
-  this.setState({mapView:false})
+  this.setState({mapView:false,listView:true})
+}
+closeListView=()=>{
+  this.setState({mapView:true,listView:false})
 }
 openPanel = () => {
     this.setState({ swipeablePanelActive: true });
@@ -76,7 +82,7 @@ if(meetings.length===0) return <View style={styles.container}><Text>Loading...</
 
     return(
         <View style={styles.container}>
-        <MapView
+  <MapView
         style={styles.map}
         region={this.state.region}
         onRegionChange={this.onRegionChange}
@@ -133,15 +139,32 @@ if(meetings.length===0) return <View style={styles.container}><Text>Loading...</
 
 
         </MapView>
-        <SwipeablePanel
+
+   <SwipeablePanel
+        style={styles.container}
                     fullWidth
                     isActive={this.state.swipeablePanelActive}
                     onClose={this.closePanel}
                     onPressCloseButton={this.closePanel}
                     closeOnTouchOutside={true}
                     showCloseButton={true}
-                >
 
+                >
+         <View style={{flex:1,flexDirection:"row",justifyContent:"space-between"}}>
+         <Text>Map View</Text>
+        <Switch
+        onValueChange = {this.closeMapView}
+        value = {this.state.mapView}
+        />
+       </View>
+       <View style={{flex:1,flexDirection:"row",justifyContent:"space-between"}}>
+        <Text>List View{'              '}</Text>
+        <Switch
+        onValueChange = {this.closeListView}
+        value = {this.state.listView}
+        trackColor="green"
+        />
+       </View>
 				</SwipeablePanel>
 
         </View>
@@ -166,6 +189,11 @@ const styles = StyleSheet.create({
   description:{
     width:120,
     margin:0,
+  },
+  btn:{
+    flex: 1,
+      alignItems: 'center',
+      marginTop: 100
   }
 });
 const mapStateToProps=(state)=>({

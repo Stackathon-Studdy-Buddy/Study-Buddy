@@ -27,7 +27,6 @@ async componentDidMount() {
   }
 
   render(){
-console.log('here',this.state)
 const region= {
   latitude:  this.state.location.latitude,
   longitude: this.state.location.longitude,
