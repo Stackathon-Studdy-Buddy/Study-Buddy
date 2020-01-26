@@ -14,7 +14,7 @@ import Icon from '@expo/vector-icons/Ionicons'
 import SplashScreen from 'react-native-splash-screen'
 import {Provider} from 'react-redux'
 import store from './store/index'
-
+import SingleMeeting from './screens/singleMeeting'
 
 const DashBoardTabNavigator=createBottomTabNavigator({
  Home:{
@@ -112,7 +112,8 @@ const AllNavigators=createSwitchNavigator({
   Settings:{
         screen:Settings
       },
-  Profile
+  Profile,
+  SingleMeeting
 })
 const MainApp=createAppContainer(AllNavigators);
 

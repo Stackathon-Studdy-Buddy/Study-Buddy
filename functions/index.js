@@ -94,21 +94,17 @@ app.put('/users/update/:userId',async(req,res)=>{
 })
 app.post('/users/create', (req, res) => {
   const {id,email,firstName,lastName,password}=req.body;
-  (async () => {
-      try {
-      await db.collection('users').doc('/' + id + '/')
-            .create({
-              email,
-              firstName,
-              lastName,
-              password
-            });
-        return res.status(200).send();
-      } catch (error) {
-        console.log(error);
-        return res.status(500).send(error);
-      }
-    })();
+  db.collection("cities").doc("LA").set({
+    email: "Los Angeles",
+    firstName: firestore,
+    lastName: lastName
+})
+.then(function() {
+    console.log("Document successfully written!");
+})
+.catch(function(error) {
+    console.error("Error writing document: ", error);
+});
 });
 
 
