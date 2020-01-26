@@ -82,6 +82,7 @@ if(meetings.length===0) return <View style={styles.container}><Text>Loading...</
 
     return(
         <View style={styles.container}>
+          {(this.state.mapView===true)?
   <MapView
         style={styles.map}
         region={this.state.region}
@@ -138,7 +139,10 @@ if(meetings.length===0) return <View style={styles.container}><Text>Loading...</
          })}
 
 
-        </MapView>
+        </MapView>:(
+          <Text>Here</Text>
+        )
+  }
 
    <SwipeablePanel
         style={styles.container}
