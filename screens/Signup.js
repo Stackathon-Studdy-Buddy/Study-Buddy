@@ -65,15 +65,11 @@ class SignupScreen extends React.Component{
             placeholderTextColor="white"/>
 
             <Button title="Submit!"
-            onPress={async () =>
-              await this.props.onSignup({
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                email: this.state.email,
-                password: this.state.password
-                })
-              }
-            onPress = {() => this.props.navigation.navigate('Home')}
+            onPress={async () =>{
+             await this.props.onSignup(this.state);
+             return this.props.navigation.navigate('Home')
+              }}
+
             style={styles.btn}
             color="white"/>
 
