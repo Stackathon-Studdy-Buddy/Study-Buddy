@@ -104,7 +104,6 @@ app.post('/users/create', (req, res) => {
         return res.status(500).send(error);
       }
     })();
-});
 
 
 exports.api=functions.https.onRequest(app);
