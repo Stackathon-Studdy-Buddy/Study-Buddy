@@ -4,9 +4,11 @@ import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import meetings from './meetings'
+import mymeetings from './mymeeting'
 const reducer = combineReducers({
   user,
-  meetings
+  meetings,
+  mymeetings
 })
 
 const middleware = composeWithDevTools(

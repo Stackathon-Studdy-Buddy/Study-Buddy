@@ -2,9 +2,14 @@ import React from 'react';
 import {connect} from 'react-redux'
 import { StyleSheet, Text, View,Button,TextInput,ImageBackground ,Image} from 'react-native';
 import {loadUser, updateProfile} from '../store/user'
+import {gotMyMeetings} from '../store/mymeeting'
 import UpdateUserProfileScreen from './UpdateProfileForm'
 
 class UserProfileScreen extends React.Component{
+
+  // componentDidMount(){
+  //   this.props.onLoadMyMeeting('celiamacrae@gmail.com')
+  // }
 
   render(){
     console.log("USER PROFILE PROPS", this.props)
@@ -29,7 +34,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
 });
 
@@ -38,6 +43,7 @@ const mapStateToProps = function(state) {
   return {
     user: state.user,
     meetings: state.meetings
+    // mymeetings : state.mymeetings
   }
 }
 
@@ -50,7 +56,11 @@ const mapDispatchToProps = function(dispatch) {
     onUpdateProfile: function(user){
       const thunk = updateProfile(user)
       dispatch(thunk)
-    }
+    },
+    // onLoadMyMeeting: function(id){
+    //   const thunk = gotMyMeetings(id)
+    //   dispatch(thunk)
+    // }
   }
 }
 

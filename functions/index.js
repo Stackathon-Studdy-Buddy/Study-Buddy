@@ -68,6 +68,19 @@ app.get('/meetings/:meetingId', async(req, res) => {
     }
     })();
 });
+app.get('/meetings/my/:user', async(req, res) => {
+  (async () => {
+    try {
+        const document = firestore.collection('meetings').where('user', '===', req.params.id);
+        let user = await document.get();
+        let response = user.data();
+        return res.status(200).send(response);
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send(error);
+    }
+    })();
+});
 app.get('/users/:userId', async(req, res) => {
   (async () => {
     try {
@@ -104,6 +117,7 @@ app.post('/users/create', (req, res) => {
         return res.status(500).send(error);
       }
     })();
+  })
 
 
 exports.api=functions.https.onRequest(app);

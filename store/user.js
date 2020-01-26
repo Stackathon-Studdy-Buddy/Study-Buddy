@@ -4,12 +4,7 @@ import axios from 'axios'
 const GET_USER = 'GET_USER'
 
 //INITIAL STATE:
-const defaultUser = {
-  // firstName: 'John',
-  // lastName: 'Doe',
-  // email: 'john@email.com',
-  // password: '123'
-}
+const defaultUser = {}
 
 //ACTION CREATORS:
 const getUser = (user) => ({type: GET_USER, user})
