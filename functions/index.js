@@ -115,7 +115,7 @@ app.post('/users/create', (req, res) => {
                 name:req.body.name,
                 description:req.body.description,
                 location: new admin.firestore.GeoPoint(lat,lng),
-                date:new Date()
+                date:req.body.date
               })
 
               const document = await firestore.collection('meetings').doc(req.body.name);

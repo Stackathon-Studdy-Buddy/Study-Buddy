@@ -81,7 +81,7 @@ class AddMeeting extends React.Component {
     }
 
   render() {
-console.log(this.state.date,typeof this.state.date)
+
     return (
       <View style={styles.container}>
       <MapView

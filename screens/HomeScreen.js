@@ -99,9 +99,15 @@ if(meetings.length===0) return <View style={styles.container}><Text>Loading...</
             longitude:meeting.location._longitude
            };
            let date,hour,minute='';
-            date= new Date(meeting.date._seconds * 1000).toString().slice(0,10).trim()
+           if(typeof meeting.date==='string'){
+             date=new Date(meeting.date).toString().slice(0,10).trim()
+             hour=new Date(meeting.date).getHours()
+            minute=new Date(meeting.date).getMinutes()
+           }
+           else
+           { date= new Date(meeting.date._seconds * 1000).toString().slice(0,10).trim()
             hour=new Date(meeting.date._seconds * 1000).getHours()
-            minute=new Date(meeting.date._seconds * 1000).getMinutes()
+            minute=new Date(meeting.date._seconds * 1000).getMinutes()}
 
            const description=meeting.description;
            const d=`${date}, ${hour}:${minute}
