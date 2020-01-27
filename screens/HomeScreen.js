@@ -82,7 +82,7 @@ if(meetings.length===0) return <View style={styles.container}><Text>Loading...</
 
     return(
         <View style={styles.container}>
-          {(this.state.mapView===true)?
+
   <MapView
         style={styles.map}
         region={this.state.region}
@@ -98,9 +98,17 @@ if(meetings.length===0) return <View style={styles.container}><Text>Loading...</
             latitude:meeting.location._latitude,
             longitude:meeting.location._longitude
            };
-           const date= new Date(meeting.date._seconds * 1000).toString().slice(0,10).trim()
-           const hour=new Date(meeting.date._seconds * 1000).getHours()
-           const minute=new Date(meeting.date._seconds * 1000).getMinutes()
+           let date,hour,minute='';
+           if(typeof meeting.date==='string'){
+             date=new Date(meeting.date).toString().slice(0,10).trim()
+             hour=new Date(meeting.date).getHours()
+            minute=new Date(meeting.date).getMinutes()
+           }
+           else
+           { date= new Date(meeting.date._seconds * 1000).toString().slice(0,10).trim()
+            hour=new Date(meeting.date._seconds * 1000).getHours()
+            minute=new Date(meeting.date._seconds * 1000).getMinutes()}
+
            const description=meeting.description;
            const d=`${date}, ${hour}:${minute}
            `
@@ -111,7 +119,7 @@ if(meetings.length===0) return <View style={styles.container}><Text>Loading...</
              address:this.state.address,
              location:location,
              name:meeting.name,
-             user:meeting.user
+            //  user:meeting.user
            }
          return (
          <Marker
@@ -139,37 +147,8 @@ if(meetings.length===0) return <View style={styles.container}><Text>Loading...</
          })}
 
 
-        </MapView>:(
-          <Text>Here</Text>
-        )
-  }
+        </MapView>
 
-   <SwipeablePanel
-        style={styles.container}
-                    fullWidth
-                    isActive={this.state.swipeablePanelActive}
-                    onClose={this.closePanel}
-                    onPressCloseButton={this.closePanel}
-                    closeOnTouchOutside={true}
-                    showCloseButton={true}
-
-                >
-         <View style={{flex:1,flexDirection:"row",justifyContent:"space-between"}}>
-         <Text>Map View</Text>
-        <Switch
-        onValueChange = {this.closeMapView}
-        value = {this.state.mapView}
-        />
-       </View>
-       <View style={{flex:1,flexDirection:"row",justifyContent:"space-between"}}>
-        <Text>List View{'              '}</Text>
-        <Switch
-        onValueChange = {this.closeListView}
-        value = {this.state.listView}
-        trackColor="green"
-        />
-       </View>
-				</SwipeablePanel>
 
         </View>
     )
