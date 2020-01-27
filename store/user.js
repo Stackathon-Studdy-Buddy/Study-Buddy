@@ -43,11 +43,12 @@ export const signup = user => async dispatch => {
 export const login = (email, password) => async dispatch => {
   try{
     const res = await axios.get(`https://us-central1-stackathon-2c6f1.cloudfunctions.net/api/users/${email}`)
-    console.log("LOGINNNNNNN", res.data)
 
+    if(res.data.password === password){
+      return dispatch(getUser(res.data || defaultUser))
+    }
 
-    dispatch(getUser(res.data || defaultUser))
-
+    return dispatch(getUser(defaultUser))
   }catch{
     console.error(error)
   }

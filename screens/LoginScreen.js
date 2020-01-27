@@ -7,84 +7,65 @@ import {login} from '../store/user'
 
 class LoginScreen extends React.Component{
 
-constructor(props){
-  super(props)
-  this.state={
-    email:'',
-    password:''
+  constructor(props){
+    super(props)
+    this.state={
+      email:'',
+      password:''
+    }
   }
-}
 
- async componentDidMount() {
-await Font.loadAsync({
-  'bangers': require('../assets/fonts/Bangers-Regular.ttf')
-})
-}
+  async componentDidMount() {
+    await Font.loadAsync({
+      'bangers': require('../assets/fonts/Bangers-Regular.ttf')
+    })
+  }
 
   render(){
 
     return(
       <ImageBackground source={require('../c.jpg')} style={styles.container} >
-<View style={styles.inner}>
-  <Text style={styles.title}>Study Buddy </Text>
-         <View style={styles.form}>
+      <View style={styles.inner}>
+        <Text style={styles.title}>Study Buddy </Text>
+        <View style={styles.form}>
 
-           <TextInput
-           value={this.state.email}
-           onChangeText={(email)=>this.setState({email})}
-           autoCapitalize= 'none'
-           placeholder={'Email'}
-           style={styles.input}
-           placeholderTextColor="white"
-           />
+          <TextInput
+          value={this.state.email}
+          onChangeText={(email)=>this.setState({email})}
+          autoCapitalize= 'none'
+          placeholder={'Email'}
+          style={styles.input}
+          placeholderTextColor="white"
+          />
 
-           <TextInput
-           value={this.state.password}
-           onChangeText={(password)=>this.setState({password})}
-           placeholder={"Password"}
-           secureTextEntry={true}
-           style={styles.input}
-           placeholderTextColor="white"
+          <TextInput
+          value={this.state.password}
+          onChangeText={(password)=>this.setState({password})}
+          placeholder={"Password"}
+          secureTextEntry={true}
+          style={styles.input}
+          placeholderTextColor="white"
+          />
 
-           />
-   {!!this.state.nameError && (
-          <Text style={{ color: "red" ,alignSelf:"center"}}>{this.state.nameError}</Text>
-        )}
+          {!!this.state.nameError && (<Text style={{ color: "red" ,alignSelf:"center"}}>{this.state.nameError}</Text>)}
+
          <Button
           title="Login"
           style={styles.btn}
           onPress={
-            async ()=>{
+             async ()=>{
               const email=this.state.email.toLocaleLowerCase()
               const password=this.state.password
 
               await this.props.onLogin(email, password)
 
-              console.log("AFTER LGIN", this.props)
-
-              if(this.props.user.email === email){
+              if(this.props.user.email){
                 return this.props.navigation.navigate('Home')
               }
               else{
                   this.setState(() => ({ nameError: null }));
                   this.setState(() => ({ nameError: "Wrong email or password!" }));
-                }
-
-
-              // if (email.trim() === "") {
-              //   this.setState(() => ({ nameError: "Email required " }));
-              // } else if(password.trim()===""){
-              //   this.setState(() => ({ nameError: "Password required " }));
-              // }else {
-              //   this.setState(() => ({ nameError: null }));
-              // }
-              // if(email==='1'&&password==='1')
-              // {
-              //   return this.props.navigation.navigate('Home')
-              // }else{
-              //   this.setState(() => ({ nameError: null }));
-              //   this.setState(() => ({ nameError: "Wrong email or password!" }));
-              // }
+              }
             }
           }
           color="white"
