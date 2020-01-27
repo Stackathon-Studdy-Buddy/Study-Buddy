@@ -12,21 +12,32 @@ class SignupScreen extends React.Component{
       firstName:'',
       lastName:'',
       email: '',
-      password: ''
+      password: '',
+      fieldError : 'All fields must be filled in to signup'
+    }
+  }
+
+  isFieldError(){
+    if(!(this.state.firstName === '' || this.state.lastName === '' || this.state.email === '' || this.state.password === '')){
+      this.setState(() => ({ fieldError: null }))
     }
   }
 
   onChangeText1(value){
     this.setState({firstName: value})
+    this.isFieldError()
   }
   onChangeText2(value){
     this.setState({lastName: value})
+    this.isFieldError()
   }
   onChangeText3(value){
     this.setState({email: value})
+    this.isFieldError()
   }
   onChangeText4(value){
     this.setState({password: value})
+    this.isFieldError()
   }
 
 
@@ -64,11 +75,26 @@ class SignupScreen extends React.Component{
             onSubmitEditing={this.onSubmit}
             placeholderTextColor="white"/>
 
+            {!!this.state.fieldError && (
+            <Text style={{ color: "red" ,alignSelf:"center"}}>{this.state.fieldError}</Text>)}
+
+            {!!this.state.emailError && (
+            <Text style={{ color: "red" ,alignSelf:"center"}}>{this.state.emailError}</Text>)}
+
             <Button title="Submit!"
             onPress={async () =>{
+              let email = this.state.email
              await this.props.onSignup(this.state);
-             return this.props.navigation.navigate('Home')
-              }}
+
+             console.log("AFTER SIGNUP", this.props)
+
+             if(this.props.user.email){
+              return this.props.navigation.navigate('Home')
+            }
+            else{
+                this.setState(() => ({ emailError: null }));
+                this.setState(() => ({ emailError: "Email already exists!" }));
+            }}}
 
             style={styles.btn}
             color="white"/>
@@ -89,7 +115,7 @@ class SignupScreen extends React.Component{
 const styles = StyleSheet.create({
   back: {
     position:"absolute",
-    top: "50%",
+    top: "10%",
 
   },
   container: {
@@ -128,10 +154,19 @@ const styles = StyleSheet.create({
     btn: {
       width:190,
       height:44,
-      backgroundColor:`white`
+      backgroundColor:`white`,
+      position:"absolute",
+      top: "85%",
+      left:"-25%",
 
     },
 })
+
+const mapStateToProps = function(state) {
+  return {
+    user: state.user
+  }
+}
 
 const mapDispatchToProps = function(dispatch) {
   return {
@@ -142,6 +177,6 @@ const mapDispatchToProps = function(dispatch) {
   }
 }
 
-const Signup = connect(null, mapDispatchToProps)(SignupScreen)
+const Signup = connect(mapStateToProps, mapDispatchToProps)(SignupScreen)
 
 export default Signup
