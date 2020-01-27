@@ -16,33 +16,39 @@ class UserProfileScreen extends React.Component{
   }
 
   render(){
-    console.log("USER PROFILE PROPS", this.props)
-    console.log("MEETINGS", this.props.meetings)
+    let haveMeetings=false;
+    let Image_Http_URL ={uri:this.props.user.imageURL}
     return(
       <View style={styles.container}>
-        <Text>{'\n'}</Text>
-        <Text style={styles.fon}>{this.props.user.firstName} {this.props.user.lastName}</Text>
+         <View style={styles.header}>
+            <View style={styles.headerContent}>
+
+
+        <Text style={styles.fon}>{this.props.user.firstName} {this.props.user.lastName}{'  '}</Text>
 
         <Image
-          style={{width: 100, height: 100}}
-          source={image}
+          style={styles.avatar}
+          source={Image_Http_URL}
         />
 
-        <Text>email: {this.props.user.email}{"\n"}</Text>
-
-        {/* <Text>Update Profile: </Text>
-        <View>
-          <UpdateUserProfileScreen user={this.props.user} onUpdateProfile={this.props.onUpdateProfile}/>
-        </View> */}
+        <Text style={styles.userInfo}>
 
 
-        <Text style={styles.fon}>{"\n"}My Meetings:{"\n"}</Text>
+          {this.props.user.email}{"\n"}</Text>
+            </View>
+            </View>
+    <View style={styles.body}>
+        <Text style={styles.fon}>{"\n"}My Meetings{"\n"}</Text>
+
+
+
         <View style={styles.allMeetings}>
           {this.props.meetings.map(meeting => {
             const date= new Date(meeting.data.date._seconds * 1000).toString().slice(0,10).trim()
             const hour=new Date(meeting.data.date._seconds * 1000).getHours()
             const minute=new Date(meeting.data.date._seconds * 1000).getMinutes()
             if(meeting.data.user === this.props.user.email){
+              haveMeetings=true;
               return (
                 <View style={styles.meeting} key={meeting.id}>
                   <Text>{date}</Text>
@@ -51,9 +57,21 @@ class UserProfileScreen extends React.Component{
               )
             }
           })}
-        </View>
+          { (haveMeetings===false)?
+          <View>
+          <Text>You don't have any meetings yet...</Text>
+          <Button
+          title='Add a meeting'
+          onPress={()=>this.props.navigation.navigate('Add')}
+          color="black"
+          />
+          </View>:null
+      }
+                  </View>
 
 
+
+</View>
       </View>
     )
   }
@@ -68,9 +86,16 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   meeting: {
+
+    width:200,
+    justifyContent:"space-between",
+    alignItems: 'center',
+    borderRadius:13,
     padding: '3%',
-    borderRadius: 4,
-    borderWidth: 0.5,
+    margin:8,
+    backgroundColor: "#f4f4f4",
+    opacity:0.7
+
   },
   fon : {
     fontSize:30,
@@ -81,7 +106,38 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    padding: '3%'
+
+  },
+  avatar: {
+    width: 130,
+    height: 130,
+    borderRadius: 63,
+    borderWidth: 4,
+    borderColor: "white",
+    marginBottom:10,
+  },
+  userInfo:{
+    fontSize:16,
+    color:"#778899",
+    fontWeight:'600',
+
+  },
+  header:{
+    backgroundColor: "#f4f4f4",
+    width:"100%",
+    height:"35%",
+  },
+  headerContent:{
+    padding:30,
+    alignItems: 'center',
+  },
+  body:{
+    backgroundColor: "#778899",
+    height:500,
+    alignItems:'center',
+    width:"100%"
+  },item:{
+    width:200
   }
 });
 
