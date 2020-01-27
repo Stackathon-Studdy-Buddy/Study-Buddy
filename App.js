@@ -52,9 +52,25 @@ const DashBoardTabNavigator=createBottomTabNavigator({
 
 })
 const DashBoardStackNavigator=createStackNavigator({
-  Connections:DashBoardTabNavigator
+  Connections:DashBoardTabNavigator,
+  SingleMeeting:SingleMeeting,
+  Settings:Settings
  },{
    defaultNavigationOptions:(({navigation})=>{
+     if(navigation.state.routeName==='SingleMeeting'||navigation.state.routeName==='Settings')
+    { let header="Meeting";
+     if(navigation.state.routeName==='Settings')
+    { header="Settings";}
+
+     return{
+      headerTitle:header,
+      headerLeft:()=> <Icon
+      onPress={()=>navigation.navigate('Home')}
+      name="md-arrow-back" size={30}
+      style={{paddingLeft:10}}
+      />
+     }}
+
      return{
        headerLeft:()=> <Icon
        onPress={()=>navigation.openDrawer()}

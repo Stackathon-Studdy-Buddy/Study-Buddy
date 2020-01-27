@@ -103,7 +103,29 @@ app.post('/users/create', (req, res) => {
         console.log(error);
         return res.status(500).send(error);
       }
-    })();
+    })()});
+        app.post('/meetings/create', (req, res) => {
+          // const {id,email,firstName,lastName,password}=req.body;
+          (async () => {
+              try {
+              const lat=req.body.location.latitude
+              const lng=req.body.location.longitude
+                console.log(typeof req.body.date)
+             await firestore.collection('meetings').doc(req.body.name).set({
+                name:req.body.name,
+                description:req.body.description,
+                location: new admin.firestore.GeoPoint(lat,lng),
+                date:new Date()
+              })
 
+              const document = await firestore.collection('meetings').doc(req.body.name);
+              let user = await document.get();
+              let response = user.data();
+               return res.status(200).send(response);
 
+              } catch (error) {
+                console.log(error);
+                return res.status(500).send(error);
+              }
+            })()});
 exports.api=functions.https.onRequest(app);

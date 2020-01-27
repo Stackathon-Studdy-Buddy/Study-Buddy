@@ -6,7 +6,9 @@ import MapView,{Marker,Callout} from 'react-native-maps'
 import * as Font from 'expo-font'
 class SigleMeeting extends React.Component{
 
+
 constructor(props){
+
   super(props)
 
     this.state = {
@@ -16,7 +18,7 @@ constructor(props){
       date: this.props.navigation.state.params.date,
       location: this.props.navigation.state.params.location,
       name: this.props.navigation.state.params.name,
-      user: this.props.navigation.state.params.user
+      // user: this.props.navigation.state.params.user
   }
 }
 
@@ -30,8 +32,8 @@ async componentDidMount() {
 const region= {
   latitude:  this.state.location.latitude,
   longitude: this.state.location.longitude,
-  latitudeDelta: 0.0922,
-  longitudeDelta: 0.0421,
+  latitudeDelta: 0.0050,
+  longitudeDelta: 0.0050
 }
     return(
         <View style={styles.container}>
@@ -52,8 +54,8 @@ const region= {
 
     <Text style={{fontSize:20,fontStyle:"italic",fontFamily:"bangers"}}>{this.state.name}</Text>
       <View style={styles.info}>
-      <Text style={styles.items}>User:</Text>
-        <Text style={{marginTop:5,marginBottom:5, marginLeft:20}}>{this.state.user}</Text>
+      {/* <Text style={styles.items}>Created by:</Text>
+        <Text style={{marginTop:5,marginBottom:5, marginLeft:20}}>{this.state.user}</Text> */}
         <Text style={styles.items}>Date:</Text>
         <Text style={{marginTop:5,marginBottom:5, marginLeft:20}}>{this.state.date}</Text>
         <Text style={styles.items}>Time:</Text>
@@ -69,8 +71,7 @@ const region= {
 
 
 
-            <Button title="Back" color='black' style={styles.btn}
-        onPress={() => {return this.props.navigation.navigate('Home')}}
+            <Button title="Join Us" color='black'
         />
         </View>
     )
