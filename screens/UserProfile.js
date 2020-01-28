@@ -4,7 +4,7 @@ import { StyleSheet, Text, View,Button,TextInput,ImageBackground ,Image} from 'r
 import {loadUser, updateProfile} from '../store/user'
 import UpdateUserProfileScreen from './UpdateProfileForm'
 import * as Font from 'expo-font'
-
+import {LinearGradient} from 'expo-linear-gradient'
 const image = require('../public/blank.png')
 
 class UserProfileScreen extends React.Component{
@@ -37,11 +37,13 @@ class UserProfileScreen extends React.Component{
           {this.props.user.email}{"\n"}</Text>
             </View>
             </View>
+
+    <LinearGradient
+    colors={['#E1E7EC', '#B1B8CB','#9599E2']}
+    style={{flex: 1,    width:"100%"}}
+  >
     <View style={styles.body}>
         <Text style={styles.fon}>{"\n"}My Meetings{"\n"}</Text>
-
-
-
         <View style={styles.allMeetings}>
           {this.props.meetings.map(meeting => {
             const date= new Date(meeting.data.date._seconds * 1000).toString().slice(0,10).trim()
@@ -68,10 +70,8 @@ class UserProfileScreen extends React.Component{
           </View>:null
       }
                   </View>
-
-
-
 </View>
+</LinearGradient>
       </View>
     )
   }
@@ -123,19 +123,21 @@ const styles = StyleSheet.create({
 
   },
   header:{
-    backgroundColor: "#f4f4f4",
+    backgroundColor: "#EFF1F2",
     width:"100%",
     height:"35%",
+
   },
   headerContent:{
     padding:30,
     alignItems: 'center',
   },
   body:{
-    backgroundColor: "#778899",
+
     height:500,
     alignItems:'center',
-    width:"100%"
+    borderRadius:20
+
   },item:{
     width:200
   }

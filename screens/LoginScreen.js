@@ -60,7 +60,7 @@ class LoginScreen extends React.Component{
               await this.props.onLogin(email, password)
 
               if(this.props.user.email){
-                return this.props.navigation.navigate('Home')
+                return this.props.navigation.navigate('Map')
               }
               else{
                   this.setState(() => ({ nameError: null }));
