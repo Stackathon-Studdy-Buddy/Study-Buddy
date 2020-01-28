@@ -84,6 +84,7 @@ if(this.state.currentPosition===null) return <Text>Loading...</Text>
          address:this.state.address,
          location:location,
          name:meeting.name,
+         user:meeting.user
        }
       if(ray<0.00040) return <View style={styles.meeting} key={index}>
         <Text
