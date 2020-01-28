@@ -15,32 +15,42 @@ import SplashScreen from 'react-native-splash-screen'
 import {Provider} from 'react-redux'
 import store from './store/index'
 import SingleMeeting from './screens/singleMeeting'
-
+import HomeScreen2 from './screens/HomeScreen2'
 const DashBoardTabNavigator=createBottomTabNavigator({
- Home:{
+
+ Map:{
    screen:HomeScreen,
    navigationOptions:{
     tabBarIcon:({tintColor})=>(
-      <Icon name="ios-home" size={24}/>
+      <Icon name="ios-map" size={24}/>
     )
    }
  },
- Add:{
-   screen:Add,
-   navigationOptions:{
-    tabBarIcon:({tintColor})=>(
-      <Icon name="ios-add-circle-outline" size={24}/>
-    )
-   }
- },
- Profile:{
-  screen:Profile,
+
+ List:{
+  screen:HomeScreen2,
   navigationOptions:{
    tabBarIcon:({tintColor})=>(
-     <Icon name="ios-school" size={24}/>
+     <Icon name="ios-locate" size={24}/>
    )
   }
- }
+},
+Add:{
+  screen:Add,
+  navigationOptions:{
+   tabBarIcon:({tintColor})=>(
+     <Icon name="ios-add-circle-outline" size={24}/>
+   )
+  }
+},
+  Profile:{
+    screen:Profile,
+    navigationOptions:{
+     tabBarIcon:({tintColor})=>(
+       <Icon name="ios-school" size={24}/>
+     )
+    }
+   }
 },{
   navigationOptions:(({navigation})=>{
     const {routeName}=navigation.state.routes[navigation.state.index];
@@ -76,7 +86,7 @@ const DashBoardStackNavigator=createStackNavigator({
      {return{
       headerTitle:header,
       headerLeft:()=> <Icon
-      onPress={()=>navigation.navigate('Home')}
+      onPress={()=>navigation.navigate('Map')}
       name="md-arrow-back" size={30}
       style={{paddingLeft:10}}
       />

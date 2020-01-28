@@ -97,6 +97,7 @@ class AddMeeting extends React.Component {
           coordinate={this.state.location}
           title={this.state.name}
           description={String(this.state.date)}
+
          />:null
           }
       </MapView>
@@ -121,7 +122,7 @@ class AddMeeting extends React.Component {
 <DatePickerIOS
 date={this.state.date}
 onDateChange={(date)=>this.setState({date})}
-onTouchCancel
+style={{backgroundColor:"white",borderRadius:25}}
 />
 
             <Button title="Submit!"
@@ -136,7 +137,7 @@ onTouchCancel
                 date:this.state.date
               }
              await this.props.add(meeting);
-             return this.props.navigation.navigate('Home');
+             return this.props.navigation.navigate('Map');
             }}
             color="white"/>
       </View>
