@@ -31,9 +31,7 @@ class SettingsScreen extends React.Component{
 
           <View style={styles.inner}>
 
-
-
-              <UpdateUserProfileScreen user={this.props.user} onUpdateProfile={this.props.onUpdateProfile}/>
+              <UpdateUserProfileScreen user={this.props.user} onUpdateProfile={this.props.onUpdateProfile} navigation={this.props.navigation}/>
 
           </View>
 
@@ -55,15 +53,15 @@ const styles = StyleSheet.create({
   },
   back: {
     position:"absolute",
-    top: "13%",
+    top: "8%",
   },
   update: {
     position:"absolute",
-    top: "30%",
+    top: "20%",
   },
   inner: {
     position:"absolute",
-    top: "35%",
+    top: "25%",
     left: "25%"
   },
   fon: {

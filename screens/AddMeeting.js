@@ -134,7 +134,8 @@ style={{backgroundColor:"white",borderRadius:25}}
                 name:this.state.name,
                 location:this.state.location,
                 description:this.state.description,
-                date:this.state.date
+                date:this.state.date,
+                user: this.props.user.email
               }
              await this.props.add(meeting);
              return this.props.navigation.navigate('Map');
@@ -189,7 +190,8 @@ const styles = StyleSheet.create({
     }
 });
 const mapStateToProps=(state)=>({
-  meetings:state.meetings
+  meetings:state.meetings,
+  user: state.user
 })
 const mapDispatchToProps=(dispatch)=>({
   add:(meeting)=>dispatch(addedMeetings(meeting))

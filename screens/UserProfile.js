@@ -1,11 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import { StyleSheet, Text, View,Button,TextInput,ImageBackground ,Image} from 'react-native';
+import { StyleSheet, Text, View,Button,TextInput,ImageBackground ,Image, TouchableHighlight, TouchableOpacity} from 'react-native';
 import {loadUser, updateProfile} from '../store/user'
 import UpdateUserProfileScreen from './UpdateProfileForm'
 import * as Font from 'expo-font'
 import {LinearGradient} from 'expo-linear-gradient'
 const image = require('../public/blank.png')
+
 
 class UserProfileScreen extends React.Component{
 
@@ -52,10 +53,12 @@ class UserProfileScreen extends React.Component{
             if(meeting.data.user === this.props.user.email){
               haveMeetings=true;
               return (
-                <View style={styles.meeting} key={meeting.id}>
-                  <Text>{date}</Text>
-                  <Text>{meeting.data.name}</Text>
-                </View>
+                <TouchableOpacity key={meeting.id} style={styles.meeting}>
+                  <View>
+                    <Text>{date}</Text>
+                    <Text>{meeting.data.name}</Text>
+                  </View>
+              </TouchableOpacity>
               )
             }
           })}

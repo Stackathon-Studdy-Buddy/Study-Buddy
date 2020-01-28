@@ -119,7 +119,7 @@ if(meetings.length===0) return <View style={styles.container}><Text>Loading...</
              address:this.state.address,
              location:location,
              name:meeting.name,
-            //  user:meeting.user
+             user:meeting.user
            }
          return (
          <Marker
