@@ -47,9 +47,16 @@ class UserProfileScreen extends React.Component{
         <Text style={styles.fon}>{"\n"}My Meetings{"\n"}</Text>
         <View style={styles.allMeetings}>
           {this.props.meetings.map(meeting => {
-            const date= new Date(meeting.data.date._seconds * 1000).toString().slice(0,10).trim()
-            const hour=new Date(meeting.data.date._seconds * 1000).getHours()
-            const minute=new Date(meeting.data.date._seconds * 1000).getMinutes()
+            if(typeof meeting.data.date==='string'){
+              date=new Date(meeting.data.date).toString().slice(0,10).trim()
+              hour=new Date(meeting.data.date).getHours()
+             minute=new Date(meeting.data.date).getMinutes()
+            }
+            else
+            { date= new Date(meeting.data.date._seconds * 1000).toString().slice(0,10).trim()
+             hour=new Date(meeting.data.date._seconds * 1000).getHours()
+             minute=new Date(meeting.data.date._seconds * 1000).getMinutes()}
+
             if(meeting.data.user === this.props.user.email){
               haveMeetings=true;
               return (

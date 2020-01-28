@@ -86,7 +86,6 @@ export default class UpdateUserProfileScreen extends React.Component{
               <TouchableOpacity onPress={() => this.setState({imageURL: image5})}>
                 <Image style={styles.img} source={{uri: image5}}/>
               </TouchableOpacity>
-              {/* <TouchableOpacity onPress={() => this.setState({imageUrl: {image3}})}> */}
               <TouchableOpacity onPress={() => this.setState({imageURL: image6})}>
                 <Image style={styles.img} source={{uri: image6}}/>
               </TouchableOpacity>
@@ -101,7 +100,6 @@ export default class UpdateUserProfileScreen extends React.Component{
               <TouchableOpacity onPress={() => this.setState({imageURL: image8})}>
                 <Image style={styles.img} source={{uri: image8}}/>
               </TouchableOpacity>
-              {/* <TouchableOpacity onPress={() => this.setState({imageUrl: {image3}})}> */}
               <TouchableOpacity onPress={() => this.setState({imageURL: image9})}>
                 <Image style={styles.img} source={{uri: image9}}/>
               </TouchableOpacity>
