@@ -61,9 +61,9 @@ export default class UpdateUserProfileScreen extends React.Component{
             onSubmitEditing={this.onSubmit}
             placeholderTextColor="white"/>
 
-            <Text>{'\br'}</Text>
+            <Text>{'\n'}</Text>
             <Text style={styles.choose}>Choose an Image:</Text>
-            <Text>{'\br'}</Text>
+            <Text>{'\n'}</Text>
 
             <View style={styles.imgBox}>
               <TouchableOpacity onPress={() => this.setState({imageURL: image1})}>
@@ -77,7 +77,7 @@ export default class UpdateUserProfileScreen extends React.Component{
               </TouchableOpacity>
             </View>
 
-            <Text>{'\br'}</Text>
+            <Text>{'\n'}</Text>
 
             <View style={styles.imgBox}>
               <TouchableOpacity onPress={() => this.setState({imageURL: image4})}>
@@ -92,7 +92,7 @@ export default class UpdateUserProfileScreen extends React.Component{
               </TouchableOpacity>
             </View>
 
-            <Text>{'\br'}</Text>
+            <Text>{'\n'}</Text>
 
             <View style={styles.imgBox}>
               <TouchableOpacity onPress={() => this.setState({imageURL: image7})}>
@@ -106,6 +106,8 @@ export default class UpdateUserProfileScreen extends React.Component{
                 <Image style={styles.img} source={{uri: image9}}/>
               </TouchableOpacity>
             </View>
+
+            <Text>{'\n'}</Text>
 
             <Button title="Submit!"
             // onPress= {() => console.log(this.props)}
@@ -146,8 +148,8 @@ const styles = StyleSheet.create({
   },
   inner:{
     position:"absolute",
-    top: "35%",
-    left:"-25%",
+    top: "30%",
+    left:"-12%",
     backgroundColor: "#282c34",
     padding: 15,
     paddingTop:18,
@@ -156,14 +158,14 @@ const styles = StyleSheet.create({
 
     },
     form:{
-      top: "35%",
+      top: "20%",
       // flex:1,
       // flexDirection:"column",
       // justifyContent:"center",
     },
     input:{
-      width:200,
-      height:44,
+      width:250,
+      height:50,
       padding:12,
       borderWidth:1,
       borderColor:"white",
@@ -177,10 +179,10 @@ const styles = StyleSheet.create({
       backgroundColor:`white`
     },
     img : {
-      width: 50,
-      height: 50,
+      width: 60,
+      height: 60,
       padding: 10,
-      borderRadius: 10
+      borderRadius: 50
     },
     imgBox : {
       flex: 1,
