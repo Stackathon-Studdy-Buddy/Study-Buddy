@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import { StyleSheet, Text, View,Button } from 'react-native';
+import { StyleSheet, Text, View,Button , ImageBackground, Image} from 'react-native';
 import UpdateUserProfileScreen from './UpdateProfileForm'
 import {updateProfile} from '../store/user'
 import * as Font from 'expo-font'
@@ -23,7 +23,8 @@ class SettingsScreen extends React.Component{
     console.log("SETTINGS", this.props)
 
     return(
-        <View style={styles.container}>
+      <ImageBackground source={require('../public/yellow-gradient.jpeg')}  style={styles.outter}>
+        {/* <View style={styles.container}> */}
 
           <View style={styles.update}>
             <Text style={styles.fon}>Update Profile: </Text>
@@ -34,39 +35,48 @@ class SettingsScreen extends React.Component{
               <UpdateUserProfileScreen user={this.props.user} onUpdateProfile={this.props.onUpdateProfile} navigation={this.props.navigation}/>
 
           </View>
-
-          <View style={styles.back}>
-            <Button title="Back"
-            onPress={()=>this.props.navigation.navigate('Home')}/>
-          </View>
-        </View>
+        {/* </View> */}
+      </ImageBackground>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
+  outter : {
+    flex : 1,
+    width: '100%',
+    height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  back: {
-    position:"absolute",
-    top: "8%",
-  },
+  // container: {
+  //   // flex: 1,
+  //   backgroundColor: '#fff',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+
+  //   position:"absolute",
+  //   top: "20%",
+  //   left: '15%'
+  // },
   update: {
+    // alignItems: 'center',
+    // justifyContent: 'center',
     position:"absolute",
-    top: "20%",
+    top: "7%",
+    left: '22%',
   },
   inner: {
     position:"absolute",
-    top: "25%",
-    left: "25%"
+    top: "15%",
+    left: "16.5%"
   },
   fon: {
-    fontSize:20,
-    fontFamily:"bangers"
+    fontSize:40,
+    fontFamily:"bangers",
+    position:"absolute",
+    top: "15%",
+    left: '15%',
   }
 });
 
