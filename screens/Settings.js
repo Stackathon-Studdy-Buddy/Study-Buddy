@@ -24,18 +24,15 @@ class SettingsScreen extends React.Component{
 
     return(
       <ImageBackground source={require('../public/yellow-gradient.jpeg')}  style={styles.outter}>
-        {/* <View style={styles.container}> */}
 
           <View style={styles.update}>
             <Text style={styles.fon}>Update Profile: </Text>
           </View>
 
           <View style={styles.inner}>
-
               <UpdateUserProfileScreen user={this.props.user} onUpdateProfile={this.props.onUpdateProfile} navigation={this.props.navigation}/>
-
           </View>
-        {/* </View> */}
+
       </ImageBackground>
     )
   }
@@ -49,19 +46,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  // container: {
-  //   // flex: 1,
-  //   backgroundColor: '#fff',
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-
-  //   position:"absolute",
-  //   top: "20%",
-  //   left: '15%'
-  // },
   update: {
-    // alignItems: 'center',
-    // justifyContent: 'center',
     position:"absolute",
     top: "7%",
     left: '22%',
