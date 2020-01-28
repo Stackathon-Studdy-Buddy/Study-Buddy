@@ -34,7 +34,6 @@ export const gotMeetings =() => async dispatch => {
 }
 export const addedMeetings=(meeting)=>async dispatch=>{
   try{
-    console.log("THIS IS THE MEETING W SEND:", meeting)
     const response=await axios.post('https://us-central1-stackathon-2c6f1.cloudfunctions.net/api/meetings/create',meeting)
     console.log(response.data)
     dispatch(addMeeting(response))
