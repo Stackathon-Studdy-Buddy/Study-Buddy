@@ -1,6 +1,6 @@
 import * as firebase from 'firebase';
 import 'firebase/firestore'
-
+require('../secrets')
 firebase.initializeApp({
   apiKey: process.env.FIREBASE_apiKey,
   authDomain: process.env.FIREBASE_authDomain,
